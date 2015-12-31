@@ -89,7 +89,7 @@ ul {
 	li {
 		background-color: $color1;
 		color: white;
-		list-style-type: decimal-leading-zero;
+		list-style-type: none;
 		line-height: 1em;
 		letter-spacing: 2px;
 		text-transform: uppercase;
@@ -103,7 +103,7 @@ ul {
 
 			&.striken {
 				text-decoration: line-through;
-				color: $color2;
+				color: lighten($color2, 30%);
 			}
 		}
 

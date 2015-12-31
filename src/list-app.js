@@ -1,22 +1,7 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
-var classNames = require('classnames');
+var GroceryList = require('./grocery-list.js');
 
-
-var GroceryList = React.createClass({
-	render: function() {
-		var self = this;
-		var createItem = function(itemObject, index) {
-			return <li key={index + itemObject.text}>
-						<span className={itemObject.striken ? 'striken' : ''}>{itemObject.text}</span>
-						<div className="icon-cancel-circled" onClick={function() {self.props.deleteItem(index); }}></div>
-						<div className="icon-ok-circled" onClick={function() {self.props.strikeItem(index); }}></div>
-					</li>};
-		return <ul>{this.props.items.map(createItem)}</ul>;
-	}
-});
-
-var ListApp = React.createClass({
+module.exports = React.createClass({
 	getInitialState: function() {
 		return {items: [], text: ''};
 	},
@@ -63,5 +48,3 @@ var ListApp = React.createClass({
 		);
 	}
 });
-
-ReactDOM.render(<ListApp />, document.getElementById('main'));
