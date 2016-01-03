@@ -18984,10 +18984,10 @@ module.exports = React.createClass({
 		var createItem = function (itemObject, index) {
 			return React.createElement(
 				'li',
-				{ key: index + itemObject.text },
+				{ className: itemObject.isStriken ? 'striken' : '', key: index + itemObject.text },
 				React.createElement(
 					'span',
-					{ className: itemObject.striken ? 'striken' : '' },
+					null,
 					itemObject.text
 				),
 				React.createElement('div', { className: 'icon-cancel-circled', onClick: function () {
@@ -19026,7 +19026,10 @@ module.exports = React.createClass({
 
 		}]);
 		var nextText = '';
-		this.setState({ items: nextItems, text: nextText });
+
+		if (nextItems[nextItems.length - 1].text !== '') {
+			this.setState({ items: nextItems, text: nextText });
+		}
 	},
 	deleteItem: function (index) {
 		var newItems = this.state.items;
@@ -19039,8 +19042,16 @@ module.exports = React.createClass({
 		var itemList = this.state.items;
 		var thisItem = itemList[index];
 
-		thisItem.striken = typeof thisItem.striken === 'undefined' ? true : !thisItem.striken;
+		if (typeof thisItem.isStriken === 'undefined') {
+			thisItem.isStriken = true;
+		} else {
+			thisItem.isStriken = !thisItem.isStriken;
+		}
+
 		this.setState({ items: itemList });
+
+		itemList.splice(index, 1);
+		thisItem.isStriken ? itemList.push(thisItem) : itemList.unshift(thisItem);
 	},
 	render: function () {
 		var self = this;

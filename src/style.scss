@@ -94,16 +94,24 @@ ul {
 		letter-spacing: 2px;
 		text-transform: uppercase;
 		text-align: left;
-		border: 1px solid $color1;
+		border: 0;
 		margin: 1em auto;
 		padding: 1em;
 		font-size: 16px;
 
-		span {
+		&.striken {
+			background-color: lighten($color2, 30%);
 
-			&.striken {
+			span {
 				text-decoration: line-through;
-				color: lighten($color2, 30%);
+			}
+
+			.icon-ok-circled,
+			.icon-cancel-circled {
+
+				&:hover {
+					color: $color1;
+				}
 			}
 		}
 

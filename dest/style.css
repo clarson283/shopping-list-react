@@ -474,13 +474,17 @@ ul {
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align: left;
-    border: 1px solid #2EAED9;
+    border: 0;
     margin: 1em auto;
     padding: 1em;
     font-size: 16px; }
-    ul li span.striken {
-      text-decoration: line-through;
-      color: #ced5db; }
+    ul li.striken {
+      background-color: #ced5db; }
+      ul li.striken span {
+        text-decoration: line-through; }
+      ul li.striken .icon-ok-circled:hover,
+      ul li.striken .icon-cancel-circled:hover {
+        color: #2EAED9; }
     ul li .icon-ok-circled,
     ul li .icon-cancel-circled {
       display: inline-block;

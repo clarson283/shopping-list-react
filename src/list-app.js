@@ -15,7 +15,10 @@ module.exports = React.createClass({
 
 		}]);
 		var nextText = '';
-		this.setState({items: nextItems, text: nextText});
+
+		if (nextItems[nextItems.length - 1].text !== '') {
+			this.setState({items: nextItems, text: nextText})
+		}
 	},
 	deleteItem: function(index) {
 		var newItems = this.state.items;
@@ -28,9 +31,16 @@ module.exports = React.createClass({
 		var itemList = this.state.items;
 		var thisItem = itemList[index];
 
+		if (typeof(thisItem.isStriken) === 'undefined') {
+			thisItem.isStriken = true;
+		} else {
+			thisItem.isStriken = !thisItem.isStriken
+		}
 
-		thisItem.striken = typeof(thisItem.striken) === 'undefined' ? true : !thisItem.striken ;
 		this.setState({items: itemList});
+
+		itemList.splice(index, 1);
+		thisItem.isStriken ? itemList.push(thisItem) : itemList.unshift(thisItem);
 	},
 	render: function() {
 		var self = this;
